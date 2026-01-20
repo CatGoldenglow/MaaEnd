@@ -9,14 +9,16 @@ on:
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
-      - "**.py"
+      - "agent/**"
+
   pull_request:
     branches:
       - "**"
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
-      - "**.py"
+      - "agent/**"
+
   workflow_dispatch:
 
 jobs:
@@ -93,7 +95,7 @@ jobs:
           latest: true
           out-file-path: "MXU"
           extract: true
-      
+
       - name: Install
         shell: bash
         run: |
@@ -101,7 +103,7 @@ jobs:
           if [[ -d MXU ]]; then
             cp -r MXU/* install
           fi
-          
+
           cp -r MaaFramework/bin install/maafw
 
           python tools/configure.py
@@ -160,7 +162,7 @@ jobs:
           for f in *; do
             (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
           done
-          
+
       - uses: softprops/action-gh-release@v2
         with:
           files: assets/*
