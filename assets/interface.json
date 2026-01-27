@@ -158,6 +158,18 @@
                 "Win32-Window",
                 "Win32-Front"
             ]
+        },
+        {
+            "name": "PuzzleSolver",
+            "label": "🧩自动解拼图",
+            "entry": "PuzzleSolverMain",
+            "description": "自动帮你通关拼图小游戏，太好了不用自己动脑子了.jpg",
+            "option": [
+                "PuzzleSolverMode"
+            ],
+            "controller": [
+                "Win32"
+            ]
         }
     ],
     "option": {
@@ -495,6 +507,57 @@
                     }
                 }
             }
+        },
+        "PuzzleSolverMode": {
+            "type": "select",
+            "label": "模式",
+            "description": "- 单次执行：成功解谜一次后任务自动结束\n- 重复执行：重复执行解谜直到手动停止\n- 仅演示：不会实际执行解谜，仅进行操作步骤的演示（搞半天还要自己拼）",
+            "cases": [
+                {
+                    "name": "Single",
+                    "label": "单次执行",
+                    "pipeline_override": {
+                        "PuzzleSolverOnSuccess": {
+                            "next": []
+                        },
+                        "PuzzleSolverSolvePuzzle": {
+                            "custom_action_param": {
+                                "dryRun": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Loop",
+                    "label": "重复执行",
+                    "pipeline_override": {
+                        "PuzzleSolverOnSuccess": {
+                            "next": [
+                                "PuzzleSolverMain"
+                            ]
+                        },
+                        "PuzzleSolverSolvePuzzle": {
+                            "custom_action_param": {
+                                "dryRun": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "DryRun",
+                    "label": "仅演示",
+                    "pipeline_override": {
+                        "PuzzleSolverOnSuccess": {
+                            "next": []
+                        },
+                        "PuzzleSolverSolvePuzzle": {
+                            "custom_action_param": {
+                                "dryRun": true
+                            }
+                        }
+                    }
+                }
+            ]
         }
     }
 }
