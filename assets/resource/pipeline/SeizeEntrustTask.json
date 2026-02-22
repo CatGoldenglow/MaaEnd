@@ -64,6 +64,37 @@
         },
         "timeout": 3000
     },
+    "SeizeEntrustTaskInDownSwipeMiddle": {
+        "action": {
+            "param": {
+                "dy": 240,
+                "target": [
+                    763,
+                    424,
+                    5,
+                    5
+                ]
+            },
+            "type": "Scroll"
+        },
+        "doc": "顶部为列表中部，不滑动到顶部",
+        "enabled": false,
+        "inverse": true,
+        "recognition": {
+            "param": {
+                "roi": [
+                    1245,
+                    154,
+                    24,
+                    37
+                ],
+                "template": [
+                    "SeizeEntrustTask/InMiddle.png"
+                ]
+            },
+            "type": "TemplateMatch"
+        }
+    },
     "SeizeEntrustTaskInDownSwipeUp": {
         "action": {
             "param": {
@@ -206,6 +237,7 @@
             "[JumpBack]SeizeEntrustTaskFound7.31wMoneyF1",
             "[JumpBack]SeizeEntrustTaskErrorTaskStop",
             "[JumpBack]SeizeEntrustTaskInUpSwipeDown",
+            "[JumpBack]SeizeEntrustTaskInDownSwipeMiddle",
             "[JumpBack]SeizeEntrustTaskNews2"
         ],
         "recognition": {
@@ -322,5 +354,6 @@
             },
             "type": "OCR"
         }
-    }
+    },
+    "AndroidSeizeEntrustTaskInUpSwipeDown": {}
 }
